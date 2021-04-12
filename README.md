@@ -1,4 +1,5 @@
-# MarvelAPI (Asynchrnous Implementation w/ asyncio, aiohttp, aiosqlite3
+# MarvelAPI 
+## Asynchrnous Implementation w/ asyncio, aiohttp, aiosqlite3
 
 This version of the code retrieves the list of comicIDs in which Spectrum appears using requests (not async). Since we're only making one request to this endpoint with the id of Spectrum, there's really no use to asynchronously call once to this endpoint. We either get the response back or we don't.
 
