@@ -1,6 +1,8 @@
-from www import rest
-from src.lib.defines import *
+import asyncio
+import aiohttp
+
 from src.lib.Utility import *
+from www import rest
 
 
 class IntelGatherer:
@@ -41,8 +43,9 @@ class IntelGatherer:
 
         return comics
 
-    def crawl_and_save_contacts(self, character_id=None):
-        status = ""
+    async def crawl_and_save_contacts(self, character_id=None):
+        results = []
+        session = aiohttp.ClientSession()
 
         if not character_id:
             character_id = self._characterID
@@ -54,22 +57,37 @@ class IntelGatherer:
         print("Searching for all characters in comics...")
 
         for comic_id in all_comics:
-            data = rest.get_all_characters_in_comic(comic_id)
+            data = await rest.get_all_characters_in_comic(comic_id, session)
 
             for result in data['data']['results']:
                 desired_fields = {'id': result['id'], 'name': result['name'], 'description': result['description'],
-                                  'picture': result['thumbnail']['path'] + "." + result['thumbnail']['extension']}
-                self.characters[result['id']] = desired_fields
+                                    'picture': result['thumbnail']['path'] + "." + result['thumbnail']['extension']}
 
-        Utility.store_character_data(self.Utility, self.characters.items())
+                if desired_fields not in results:
+                    results.append(desired_fields)
 
-        return status
+        await session.close()
+
+        for character in results:
+            await Utility.async_store_character_data(character)
+
+        return results
 
 
 if __name__ == '__main__':
-    # If arg is sent then use that hero, otherwise default to Spectrum
+    start_time = int(time.time())
     SpectrumIntelGatherer = IntelGatherer("Spectrum")
     print("Retrieving Spectrum's Basic Profile Information...")
     basic_profile_data = SpectrumIntelGatherer.retrieve_and_save_profile()
+
     print("Finding All of Spectrum's 1st Degree Contacts...")
-    SpectrumIntelGatherer.crawl_and_save_contacts()
+    start_time = int(time.time())
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(SpectrumIntelGatherer.crawl_and_save_contacts())
+
+    print("Total time to run: " + str((int(time.time()) - start_time)) + " seconds")
+
+    elapsed_time = int(time.time()) - start_time
+
+    print("Elapsed Time: " + str(elapsed_time))

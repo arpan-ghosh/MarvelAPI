@@ -60,13 +60,15 @@ def get_all_comics(character_id):
     return json_data
 
 
-def get_all_characters_in_comic(comic_id):
+def generate_characters_in_comic_url(comic_id):
+    ts, hash = Utility.generate_hash()
+
+    return API_URL + ENDPOINT_COMICS + "/" + str(comic_id) + "/" + ENDPOINT_CHARACTERS + ts + "&" + API_KEY_PARAMS + hash
+
+
+async def get_all_characters_in_comic(comic_id, session):
     url = API_URL + ENDPOINT_COMICS + "/" + str(comic_id) + "/" + ENDPOINT_CHARACTERS + "?" + API_KEY_PARAMS
 
-    try:
-        response = requests.request("GET", url, headers=get_headers(), data=None)
-        json_data = json.loads(response.text)
-    except requests.exceptions.RequestException as e:
-        return e
-
-    return json_data
+    async with session.get(url, headers=get_headers()) as resp:
+        resp_text = await resp.text()
+        return json.loads(resp_text)
