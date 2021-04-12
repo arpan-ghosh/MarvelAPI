@@ -89,4 +89,19 @@ Enter ".help" for usage hints.
 sqlite> .mode line
 sqlite> select count(*) from marvelcharacter;
 count(*) = 41
+sqlite> .q
+root@874846bd09a3:/app# rm -f marvel.db 
+root@874846bd09a3:/app# python3 IntelGatherer.py 
+Retrieving Spectrum's Basic Profile Information...
+Inserting Character: Spectrum
+Finding All of Spectrum's 1st Degree Contacts...
+Gathering all comics Spectrum's appeared in...
+Found 33 comics Spectrum's appeared in...
+Searching for all characters in comics...
+Total time to run: 7 seconds
+Elapsed Time: 7
+root@874846bd09a3:/app# sqlite3 marvel.db 'SELECT * FROM MarvelCharacter WHERE name="Spectrum";'
+1|Spectrum|1010705||http://i.annihil.us/u/prod/marvel/i/mg/9/00/4c0030bee8c86.jpg|1618260229.38791
+root@874846bd09a3:/app# sqlite3 marvel.db 'SELECT count(*) FROM MarvelCharacter;'
+41
 ```
