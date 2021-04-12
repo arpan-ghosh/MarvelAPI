@@ -10,9 +10,9 @@ class IntelGatherer:
     _characterID = ""
     characters = {}
 
-    def __init__(self, suspect):
+    def __init__(self, character):
         self.Utility = Utility
-        self._character = suspect
+        self._character = character
 
     def retrieve_and_save_profile(self):
         basic_profile = {0: self.get_basic_info(self)}
@@ -44,6 +44,20 @@ class IntelGatherer:
         return comics
 
     async def crawl_and_save_contacts(self, character_id=None):
+        """Gets and saves every Marvel character in the comics that Spectrum's appeared in
+
+            Parameters
+            ----------
+            character_id : str
+                Use the passed in character id if, otherwise get it from the class object variable
+
+
+            Returns
+            -------
+            results : list
+                a list of the characters and their relevant metadata
+            """
+
         results = []
         session = aiohttp.ClientSession()
 
@@ -75,12 +89,16 @@ class IntelGatherer:
 
 
 if __name__ == '__main__':
-    start_time = int(time.time())
-    SpectrumIntelGatherer = IntelGatherer("Spectrum")
-    print("Retrieving Spectrum's Basic Profile Information...")
+    name = "Spectrum"
+
+    SpectrumIntelGatherer = IntelGatherer(name)
+
+    print("Retrieving " + name + "\'s" + " Basic Profile Information...")
+
     basic_profile_data = SpectrumIntelGatherer.retrieve_and_save_profile()
 
     print("Finding All of Spectrum's 1st Degree Contacts...")
+
     start_time = int(time.time())
 
     loop = asyncio.get_event_loop()

@@ -11,7 +11,6 @@ jsonmerge==1.8.0
 jsonschema==3.2.0
 multidict==5.1.0
 PuLP==2.4
-pydfs-lineup-optimizer==3.4.0
 pyparsing==2.4.7
 pyrsistent==0.17.3
 pytz==2021.1
