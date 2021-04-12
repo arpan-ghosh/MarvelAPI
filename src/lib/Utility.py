@@ -1,7 +1,6 @@
 import pprint
 import sqlite3
 import time
-from concurrent.futures.thread import ThreadPoolExecutor
 
 from www.rest import *
 from sqlite3 import Error

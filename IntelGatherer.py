@@ -67,9 +67,20 @@ class IntelGatherer:
 
 
 if __name__ == '__main__':
-    # If arg is sent then use that hero, otherwise default to Spectrum
-    SpectrumIntelGatherer = IntelGatherer("Spectrum")
-    print("Retrieving Spectrum's Basic Profile Information...")
+    name = "Spectrum"
+
+    SpectrumIntelGatherer = IntelGatherer(name)
+
+    print("Retrieving " + name + "\'s" + " Basic Profile Information...")
+
     basic_profile_data = SpectrumIntelGatherer.retrieve_and_save_profile()
+
     print("Finding All of Spectrum's 1st Degree Contacts...")
+
+    start_time = int(time.time())
+
     SpectrumIntelGatherer.crawl_and_save_contacts()
+
+    print("Total time to run: " + str((int(time.time()) - start_time)) + " seconds")
+
+    elapsed_time = int(time.time()) - start_time
