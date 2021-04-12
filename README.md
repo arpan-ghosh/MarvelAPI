@@ -50,6 +50,20 @@ if __name__ == '__main__':
 
 The output of the run should look similar to the following:
 
+```
+root@874846bd09a3:/app# python3 IntelGatherer.py 
+Retrieving Spectrum's Basic Profile Information...
+Inserting Character: Spectrum
+Finding All of Spectrum's 1st Degree Contacts...
+Gathering all comics Spectrum's appeared in...
+Found 33 comics Spectrum's appeared in...
+Searching for all characters in comics...
+Total time to run: 7 seconds
+Elapsed Time: 7
+```
+
+Full Docker Run:
+
 ```Bash
 TNS8379L:marvel aghosh$ docker build -t marvel-api .
 [+] Building 2.4s (12/12) FINISHED                                                                                     
