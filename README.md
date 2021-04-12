@@ -11,16 +11,16 @@ However, the more API intensive part of the code, the calls out to the `/comics/
 This implementation is about ~7 seconds. If we did everything using async, including getting the Spectrum's initial information AND the comicIDs list, it could be slightly faster. But the overhead for such a small list of results could also make it such that it's not really that much faster.
 
 ## APIs Queried
-GET /v1/public/characters - Fetches lists of characters given a Name (aka. "Spectrum", save data, especially the character ID)
-GET /v1/public/characters/{characterId}/comicsFetches - lists of comics filtered by a character id (aka. Spectrum's Marvel ID, parse and store comic IDs in memory)
-GET /v1/public/comics/{comicId}/characters - Fetches lists of characters filtered by a comic id (Make a GET here for each comic ID stored from the request above, then parse for the Characters and save their data).
+1. GET /v1/public/characters - Fetches lists of characters given a Name (aka. "Spectrum", save data, especially the character ID)
+2. GET /v1/public/characters/{characterId}/comicsFetches - lists of comics filtered by a character id (aka. Spectrum's Marvel ID, parse and store comic IDs in memory)
+3. GET /v1/public/comics/{comicId}/characters - Fetches lists of characters filtered by a comic id (Make a GET here for each comic ID stored from the request above, then parse for the Characters and save their data).
 
 
 ## Docker instructions
-### 1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
-### 2. `docker build -t marvel-api .`
-### 3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
-### 4. The container should've already executed the task and updated the database. If you want, delete the 'marvel.db' database and run the file IntelGatherer.
+1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
+2. `docker build -t marvel-api .`
+3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
+4. The container should've already executed the task and updated the database. If you want, delete the 'marvel.db' database and run the file IntelGatherer.
 
 ```
 rm -f marvel.db
