@@ -14,7 +14,7 @@ rm -f marvel.db
 python3 IntelGatherer.py
 ```
 
-
+## Write-up:
 This implementation retrieves basic information about Spectrum and stores it in a sqlite database. It then finds all the comics that she's appeared in, and extracts all the characters from those comics, and stores their basic information as well.
 
 This is a O(n^2) implementation (see crawl_and_save_contacts()). For each comic that Spectrum appeared in, I make a REST GET call to retrieve all the characters in that comic. Then, for each character in the returned results for the particular comic in question, I store their information in a dictionary hashed on the marvel_id of the character. (A for loop inside a for loop).
