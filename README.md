@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
 The output of the run should look similar to the following:
 
-```
+```Bash
 TNS8379L:marvel aghosh$ docker build -t marvel-api .
 [+] Building 2.4s (12/12) FINISHED                                                                                     
  => [internal] load build definition from Dockerfile                                                              0.0s
