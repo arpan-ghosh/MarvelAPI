@@ -51,7 +51,28 @@ if __name__ == '__main__':
 The output of the run should look similar to the following:
 
 ```
-root@8763771d5996:/app# python3 IntelGatherer.py 
+TNS8379L:marvel aghosh$ docker build -t marvel-api .
+[+] Building 2.4s (12/12) FINISHED                                                                                     
+ => [internal] load build definition from Dockerfile                                                              0.0s
+ => => transferring dockerfile: 43B                                                                               0.0s
+ => [internal] load .dockerignore                                                                                 0.0s
+ => => transferring context: 2B                                                                                   0.0s
+ => [internal] load metadata for docker.io/library/python:3.8-slim                                                0.8s
+ => [auth] library/python:pull token for registry-1.docker.io                                                     0.0s
+ => [1/6] FROM docker.io/library/python:3.8-slim@sha256:bdc39f13da35be9a8e592f8f49d12a4552ffd3e90b1fb866f7ab628f  0.0s
+ => [internal] load build context                                                                                 0.3s
+ => => transferring context: 277.73kB                                                                             0.3s
+ => CACHED [2/6] WORKDIR /app                                                                                     0.0s
+ => CACHED [3/6] COPY requirements.txt requirements.txt                                                           0.0s
+ => CACHED [4/6] RUN pip3 install -r requirements.txt                                                             0.0s
+ => CACHED [5/6] RUN apt-get update && apt-get install -y --no-install-recommends                                 0.0s
+ => [6/6] COPY . .                                                                                                0.8s
+ => exporting to image                                                                                            0.4s
+ => => exporting layers                                                                                           0.3s
+ => => writing image sha256:478c184e81b1d6cef259127edcf74198609992d2622ae802e9cfb7c459e69326                      0.0s
+ => => naming to docker.io/library/marvel-api                                                                     0.0s
+TNS8379L:marvel aghosh$ docker run -it --rm --name my-marvel-app marvel-api /bin/bash
+root@874846bd09a3:/app# python3 IntelGatherer.py 
 Retrieving Spectrum's Basic Profile Information...
 Inserting Character: Spectrum
 Finding All of Spectrum's 1st Degree Contacts...
@@ -60,4 +81,12 @@ Found 33 comics Spectrum's appeared in...
 Searching for all characters in comics...
 Total time to run: 6 seconds
 Elapsed Time: 6
+root@874846bd09a3:/app# sqlite3 marvel.db 'SELECT * FROM MarvelCharacter WHERE name="Spectrum";'
+1|Spectrum|1010705||http://i.annihil.us/u/prod/marvel/i/mg/9/00/4c0030bee8c86.jpg|1618195093.64277
+root@874846bd09a3:/app# sqlite3 marvel.db 
+SQLite version 3.27.2 2019-02-25 16:06:06
+Enter ".help" for usage hints.
+sqlite> .mode line
+sqlite> select count(*) from marvelcharacter;
+count(*) = 41
 ```
