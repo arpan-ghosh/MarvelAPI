@@ -20,7 +20,7 @@ This implementation is about ~7 seconds. If we did everything using async, inclu
 1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
 2. `docker build -t marvel-api .`
 3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
-4. The container should've already executed the task and updated the database and stores Spectrum's and all her 1st degree "connections". But you can delete the 'marvel.db' database and run the file IntelGatherer to generate this entire database again. The
+4. The container should've already executed the task, created, and updated the database. But you can delete the 'marvel.db' database and run the file IntelGatherer to generate this entire database again. The
 
 ```
 rm -f marvel.db
@@ -30,7 +30,7 @@ python3 IntelGatherer.py
 ## File Structure
 There is a `/src/lib` and `/www` directory. The `src` directory has Python files like constants and a Utility class which has helper functions that could be used by any class. The `www` directory holds a `rest.py` which are `get()`/`fetch()` functions that make the `Request`/`aiohttp request`. The main "engine" is an object oriented class titled `IntelGatherer.py` which is stored in the root directory. This class runs a main function that runs the logic to get Spectrum's information and her contacts' information. The `Dockerfile` is also in the root directory, and it uses the `requirements.txt` file which contain the minimum python3 libraries needed to run the program.
 
-`IntelGatherer.py's` main looks like the following. To only run the first portion, which sttores only Spectrum's information, comment out the call to crawl_and_save_contacts():
+`IntelGatherer.py's` main looks like the following. To only run the first portion, which stores only Spectrum's information, comment out the call to crawl_and_save_contacts():
 ```
 if __name__ == '__main__':
     name = "Spectrum"
