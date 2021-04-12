@@ -1,6 +1,6 @@
 # MarvelAPI 
 ## Asynchronous Implementation w/ asyncio, aiohttp, aiosqlite3
-*To switch to the synchronous implementation, checkout the `master` branch.*
+*To switch to the synchronous implementation, checkout the `master` branch or switch to the desired tag/release*
 
 This implementation retrieves basic information about Spectrum and stores it in a sqlite database. It then finds all the comics that she's appeared in, and extracts all the characters from those comics, and stores their basic information as well.
 
