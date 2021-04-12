@@ -2,7 +2,7 @@
 ## Asynchronous Implementation w/ asyncio, aiohttp, aiosqlite3
 *To switch to the synchronous implementation, checkout the `master` branch or switch to the desired tag/release*
 
-## Docker instructions
+## Instructions to Run (Docker)
 1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
 2. `docker build -t marvel-api .`
 3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
