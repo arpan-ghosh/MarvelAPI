@@ -17,10 +17,10 @@ GET /v1/public/comics/{comicId}/characters - Fetches lists of characters filtere
 
 
 ## Docker instructions
-1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
-2. `docker build -t marvel-api .`
-3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
-4. The container should've already executed the task and updated the database. If you want, delete the 'marvel.db' database and run the file IntelGatherer.
+### 1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
+### 2. `docker build -t marvel-api .`
+### 3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
+### 4. The container should've already executed the task and updated the database. If you want, delete the 'marvel.db' database and run the file IntelGatherer.
 
 ```
 rm -f marvel.db
