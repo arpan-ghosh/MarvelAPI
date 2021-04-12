@@ -2,7 +2,9 @@
 ## Asynchronous Implementation w/ asyncio, aiohttp, aiosqlite3
 *To switch to the synchronous implementation, checkout the `master` branch.*
 
-This version of the code retrieves the list of comicIDs in which Spectrum appears using requests (not async). Since we're only making one request to this endpoint with the id of Spectrum, there's really no use to asynchronously call once to this endpoint. We either get the response back or we don't. 
+This implementation retrieves basic information about Spectrum and stores it in a sqlite database. It then finds all the comics that she's appeared in, and extracts all the characters from those comics, and stores their basic information as well.
+
+This version of the code retrieves the list of comicIDs in which Spectrum appears using requests (basically urrlib). Since we're only making one request to this endpoint with the id of Spectrum, there's really no use to asynchronously call once to this endpoint. We either get the response back or we don't. 
 
 However, the more API intensive part of the code, the calls out to the `/comics/{id}/characters::GET` endpoint to retrieve the list of all the characters that appear in the comics that Spectrum appears in, does happen asynchronously using asyncio and aiohttp. We then store this in the sqlite database asynchronously as well.
 
