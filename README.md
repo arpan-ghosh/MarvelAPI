@@ -12,6 +12,7 @@
 rm -f marvel.db
 python3 IntelGatherer.py
 ```
+5. If you need to use another API_KEY, comment/uncomment one of the hardcoded ones in the `defines.py` class.
 
 ## Write-up
 This implementation retrieves basic information about Spectrum and stores it in a sqlite database. It then finds all the comics that she's appeared in, and extracts all the characters from those comics, and stores their basic information as well.
