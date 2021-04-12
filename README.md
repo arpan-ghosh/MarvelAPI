@@ -2,6 +2,19 @@
 ## Asynchronous Implementation w/ asyncio, aiohttp, aiosqlite3
 *To switch to the synchronous implementation, checkout the `master` branch or switch to the desired tag/release*
 
+## Docker instructions
+1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
+2. `docker build -t marvel-api .`
+3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
+4. The container should've already executed the task, created, and updated the database. But you can delete the 'marvel.db' database and run the file IntelGatherer to generate this entire database again:
+
+```
+rm -f marvel.db
+python3 IntelGatherer.py
+```
+
+## Summary
+
 This implementation retrieves basic information about Spectrum and stores it in a sqlite database. It then finds all the comics that she's appeared in, and extracts all the characters from those comics, and stores their basic information as well.
 
 This version of the code retrieves the list of comicIDs in which Spectrum appears using requests (basically urrlib). Since we're only making one request to this endpoint with the id of Spectrum, there's really no use to asynchronously call once to this endpoint. We either get the response back or we don't. 
@@ -14,18 +27,6 @@ This implementation is about ~7 seconds. If we did everything using async, inclu
 1. `GET /v1/public/characters` - Fetches lists of characters given a Name (aka. "Spectrum", save data, especially the character ID)
 2. `GET /v1/public/characters/{characterId}/comicsFetches` - lists of comics filtered by a character id (aka. Spectrum's Marvel ID, parse and store comic IDs in memory)
 3. `GET /v1/public/comics/{comicId}/characters` - Fetches lists of characters filtered by a comic id (Make a GET here for each comic ID stored from the request above, then parse for the Characters and save their data).
-
-
-## Docker instructions
-1. Download the repository, and then run the following commands from the root directory of the repo (marvel-api)
-2. `docker build -t marvel-api .`
-3. `docker run -it --rm --name my-marvel-app marvel-api /bin/bash`
-4. The container should've already executed the task, created, and updated the database. But you can delete the 'marvel.db' database and run the file IntelGatherer to generate this entire database again. The
-
-```
-rm -f marvel.db
-python3 IntelGatherer.py
-```
 
 ## File Structure
 There is a `/src/lib` and `/www` directory. The `src` directory has Python files like constants and a Utility class which has helper functions that could be used by any class. The `www` directory holds a `rest.py` which are `get()`/`fetch()` functions that make the `Request`/`aiohttp request`. The main "engine" is an object oriented class titled `IntelGatherer.py` which is stored in the root directory. This class runs a main function that runs the logic to get Spectrum's information and her contacts' information. The `Dockerfile` is also in the root directory, and it uses the `requirements.txt` file which contain the minimum python3 libraries needed to run the program.
