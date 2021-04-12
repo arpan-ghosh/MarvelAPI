@@ -1,8 +1,9 @@
 # Required API Constants
 API_URL = "https://gateway.marvel.com/v1/public/"
 API_HOST = "https://developer.marvel.com"
-#API_KEY = "b9530947af28f24155b1f3822f706584"
-API_KEY = "01afb308dab4d57fcab977371007c0a6"
+# API_KEY = "b9530947af28f24155b1f3822f706584"
+# API_KEY = "01afb308dab4d57fcab977371007c0a6"
+API_KEY = "0b056a7737e438ade5062b5e485823fe"
 API_KEY_PARAMS = "apikey=" + API_KEY
 
 # Limits

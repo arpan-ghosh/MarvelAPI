@@ -115,10 +115,12 @@ class Utility:
 
     @staticmethod
     def generate_hash():
-        public_key = 'b9530947af28f24155b1f3822f706584'
-        private_key = '19d7969661e220260832c7dfc20f7b74999de9e9'
+        # public_key = 'b9530947af28f24155b1f3822f706584'
+        # private_key = '19d7969661e220260832c7dfc20f7b74999de9e9'
         # public_key = '01afb308dab4d57fcab977371007c0a6'
         # private_key = 'c8ba611bb5ea061d548925548e447b4664c81e16'
+        public_key = '0b056a7737e438ade5062b5e485823fe'
+        private_key = '3c4b9c8d19ead6021e5a9ca0e4cbc7f02c0d6c17'
         ts = str(int(time.time()))
         string_to_hash = ts + private_key + public_key
         return "?ts=" + ts.strip(), "&hash=" + hashlib.md5(string_to_hash.strip().encode('utf-8')).hexdigest()
