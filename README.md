@@ -29,7 +29,11 @@ This implementation is about ~7 seconds. If we did everything using async, inclu
 3. `GET /v1/public/comics/{comicId}/characters` - Fetches lists of characters filtered by a comic id (Make a GET here for each comic ID stored from the request above, then parse for the Characters and save their data).
 
 ## File Structure
-There is a `/src/lib` and `/www` directory. The `src` directory has Python files like constants and a Utility class which has helper functions that could be used by any class. The `www` directory holds a `rest.py` which are `get()`/`fetch()` functions that make the `Request`/`aiohttp request`. The main "engine" is an object oriented class titled `IntelGatherer.py` which is stored in the root directory. This class runs a main function that runs the logic to get Spectrum's information and her contacts' information. The `Dockerfile` is also in the root directory, and it uses the `requirements.txt` file which contain the minimum python3 libraries needed to run the program.
+1. There is a `/src/lib` and `/www` directory. 
+2. The `src` directory has Python files like constants and a Utility class which has helper functions that could be used by any class. 
+3. The `www` directory holds a `rest.py` which are `get()`/`fetch()` functions that make the `Request`/`aiohttp request`. 
+4. The main "engine" is an object oriented class titled `IntelGatherer.py` which is stored in the root directory. This class runs a main function that runs the logic to get Spectrum's information and her contacts' information. 
+5. The `Dockerfile` is also in the root directory, and it uses the `requirements.txt` file which contain the minimum python3 libraries needed to run the program.
 
 `IntelGatherer.py's` main looks like the following. To only run the first portion, which stores only Spectrum's information, comment out the call to crawl_and_save_contacts():
 ```
