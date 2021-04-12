@@ -18,6 +18,7 @@ python3 IntelGatherer.py
 
 Output Run should look similar to the following:
 
+```
 root@8763771d5996:/app# python3 IntelGatherer.py 
 Retrieving Spectrum's Basic Profile Information...
 Inserting Character: Spectrum
@@ -27,3 +28,4 @@ Found 33 comics Spectrum's appeared in...
 Searching for all characters in comics...
 Total time to run: 6 seconds
 Elapsed Time: 6
+```
