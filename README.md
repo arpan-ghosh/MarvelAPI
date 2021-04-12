@@ -18,7 +18,32 @@ rm -f marvel.db
 python3 IntelGatherer.py
 ```
 
-Output Run should look similar to the following:
+IntelGatherer.py's main looks like the following:
+```
+if __name__ == '__main__':
+    name = "Spectrum"
+
+    SpectrumIntelGatherer = IntelGatherer(name)
+
+    print("Retrieving " + name + "\'s" + " Basic Profile Information...")
+
+    basic_profile_data = SpectrumIntelGatherer.retrieve_and_save_profile()
+
+    print("Finding All of Spectrum's 1st Degree Contacts...")
+
+    start_time = int(time.time())
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(SpectrumIntelGatherer.crawl_and_save_contacts())
+
+    print("Total time to run: " + str((int(time.time()) - start_time)) + " seconds")
+
+    elapsed_time = int(time.time()) - start_time
+
+    print("Elapsed Time: " + str(elapsed_time))
+```
+
+The output of the run should look similar to the following:
 
 ```
 root@8763771d5996:/app# python3 IntelGatherer.py 
