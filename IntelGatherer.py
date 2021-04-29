@@ -64,10 +64,10 @@ class IntelGatherer:
         if not character_id:
             character_id = self._characterID
 
-        print("Gathering all comics Spectrum's appeared in...")
+        print("Gathering all comics appeared in...")
         all_comics = self.get_all_comics_for_character(character_id)
 
-        print("Found " + str(len(all_comics)) + " comics Spectrum's appeared in...")
+        print("Found " + str(len(all_comics)) + " comics appeared in...")
         print("Searching for all characters in comics...")
 
         for comic_id in all_comics:
@@ -89,20 +89,20 @@ class IntelGatherer:
 
 
 if __name__ == '__main__':
-    name = "Spectrum"
+    name = "Spider Man"
 
-    SpectrumIntelGatherer = IntelGatherer(name)
+    SpiderManIntelGatherer = IntelGatherer(name)
 
     print("Retrieving " + name + "\'s" + " Basic Profile Information...")
 
-    basic_profile_data = SpectrumIntelGatherer.retrieve_and_save_profile()
+    basic_profile_data = SpiderManIntelGatherer.retrieve_and_save_profile()
 
-    print("Finding All of Spectrum's 1st Degree Contacts...")
+    print("Finding All of Spider Man's 1st Degree Contacts...")
 
     start_time = int(time.time())
 
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(SpectrumIntelGatherer.crawl_and_save_contacts())
+    loop.run_until_complete(SpiderManIntelGatherer.crawl_and_save_contacts())
 
     print("Total time to run: " + str((int(time.time()) - start_time)) + " seconds")
 
